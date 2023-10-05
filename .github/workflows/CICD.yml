@@ -27,7 +27,7 @@ jobs:
 
     - name: Run unit tests
       run: |
-        cd lambdas/tests
+        cd lambdas
         pytest
 
   deploy:
