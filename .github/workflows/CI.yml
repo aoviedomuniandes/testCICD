@@ -46,8 +46,8 @@ jobs:
       run: |
         cd lambdas
         python -m pip install --upgrade pip
-        mkdir -p lambdas/src/python
-        pip install -r requirements.txt -t lambdas/src/python/
+        mkdir -p lambdas/python
+        pip install -r requirements.txt -t lambdas/python
 
     - name: Zip the layer
       run: |
