@@ -51,7 +51,7 @@ jobs:
 
     - name: Zip the layer
       run: |
-        cd lambdas/src
+        cd lambdas
         zip -r python.zip python
 
     - name: Configure AWS credentials
