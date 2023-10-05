@@ -1,4 +1,4 @@
-name: CI/CD Pipeline
+name: CI Pipeline
 
 on:
   pull_request:
@@ -30,8 +30,7 @@ jobs:
         cd lambdas
         pytest
 
-  deploy:
-    if: github.ref == 'refs/heads/main'
+  validate:
     needs: test
     runs-on: ubuntu-latest
     steps:
@@ -41,7 +40,7 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v2
       with:
-        python-version: 3.8
+        python-version: 3.10.10
 
     - name: Install dependencies for layers
       run: |
@@ -61,8 +60,8 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: Deploy with CDK
+    - name: Validate IAC with CDK
       run: |
         pip install aws-cdk.core
         cd infra
-        cdk deploy
+        cdk synthesize
