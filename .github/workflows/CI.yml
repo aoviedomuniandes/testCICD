@@ -44,6 +44,7 @@ jobs:
 
     - name: Install dependencies for layers
       run: |
+        cd lambdas
         python -m pip install --upgrade pip
         mkdir lambdas/src/python
         pip install -r requirements.txt -t lambdas/src/python/
