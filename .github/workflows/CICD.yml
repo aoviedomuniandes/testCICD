@@ -4,7 +4,7 @@ on:
   pull_request:
     branches:
       - develop
-      - master
+      - main
 
 jobs:
   test:
@@ -31,7 +31,7 @@ jobs:
         pytest
 
   deploy:
-    if: github.ref == 'refs/heads/master'
+    if: github.ref == 'refs/heads/main'
     needs: test
     runs-on: ubuntu-latest
     steps:
