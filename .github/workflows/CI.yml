@@ -69,5 +69,6 @@ jobs:
 
     - name: Validate IAC with CDK
       run: |
+        ls -la
         cd Infra
         cdk synthesize
