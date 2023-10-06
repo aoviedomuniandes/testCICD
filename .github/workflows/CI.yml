@@ -67,8 +67,12 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: Validate IAC with CDK
-      run: |
-        ls -la
-        cd Infra
-        cdk synthesize
+    - name: cdk synth
+      uses: youyo/aws-cdk-github-actions@v2
+      with:
+        cdk_subcommand: 'synth'
+        working_dir: 'Infra'
+      env:
+        AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        AWS_DEFAULT_REGION: 'us-east-1'
