@@ -22,14 +22,21 @@ jobs:
         cd lambdas
         python -m pip install --upgrade pip
         pip install pytest
+        pip install pytest-cov
         pip install -r requirements.txt
-
-    - name: Run unit tests
+  
+    - name: Run unit tests and generate report
       run: |
         cd lambdas
-        pytest
+        pytest --cov=. --cov-report=html:reports
+    
+    - name: Upload coverage report to GitHub
+      uses: actions/upload-artifact@v2
+      with:
+        name: coverage-report
+        path: lambdas/reports
 
-  validate:
+  deploy:
     needs: test
     runs-on: ubuntu-latest
     steps:
